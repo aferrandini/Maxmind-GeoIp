@@ -1,0 +1,16 @@
+{
+    "name": "maxmind/geoip",
+    "type": "library",
+    "description": "MaxMind GeoIP Library for PHP",
+    "keywords": ["maxmind geoip"],
+    "version": "1.0.0",
+    "license": "BSD",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0" : {
+            "Maxmind" : "src/"
+        }
+    }
+}
