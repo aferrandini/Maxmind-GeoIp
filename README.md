@@ -5,8 +5,8 @@ To install this library please follow the next steps:
 First add the repo to your `deps` file:
 
     [Maxmind]
-        git=https://github.com/aferrandini/PHPQRCode.git
-        target=/maxmind
+        git=https://aferrandini@github.com/aferrandini/Maxmind-GeoIp.git
+        target=maxmind
 
 Then install the library with the command:
 
