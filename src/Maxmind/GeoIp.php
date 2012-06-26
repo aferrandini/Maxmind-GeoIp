@@ -466,7 +466,7 @@ class GeoIp {
 
     public function geoip_country_id_by_addr($addr) {
         $ipnum = ip2long($addr);
-        return $this->_geoip_seek_country($this, $ipnum) - self::GEOIP_COUNTRY_BEGIN;
+        return $this->_geoip_seek_country($ipnum) - self::GEOIP_COUNTRY_BEGIN;
     }
 
     public function geoip_country_code_by_addr_v6($addr) {
