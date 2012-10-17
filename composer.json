@@ -26,7 +26,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Maxmind\\Bundle\\GeoipBundle\\MaxmindGeoipBundle": "" }
+        "psr-0": { "src": "" }
     },
     "target-dir": "Maxmind/Bundle/GeoipBundle"
 }
