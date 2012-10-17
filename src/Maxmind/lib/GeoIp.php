@@ -637,25 +637,23 @@ class GeoIp {
         if ($seek_org == $this->databaseSegments) {
             return NULL;
         }
-        return _common_get_org($seek_org);
+        return $this->_common_get_org($seek_org);
     }
 
     public function _get_org($ipnum){
-        $seek_org = _geoip_seek_country($ipnum);
+        $seek_org = $this->_geoip_seek_country($ipnum);
         if ($seek_org == $this->databaseSegments) {
             return NULL;
         }
-        return _common_get_org($seek_org);
+        return $this->_common_get_org($seek_org);
     }
-
-
 
     public function geoip_name_by_addr_v6 ($addr) {
         if ($addr == NULL) {
             return 0;
         }
         $ipnum = inet_pton($addr);
-        return _get_org_v6($ipnum);
+        return $this->_get_org_v6($ipnum);
     }
 
     public function geoip_name_by_addr ($addr) {
@@ -663,16 +661,16 @@ class GeoIp {
             return 0;
         }
         $ipnum = ip2long($addr);
-        return _get_org($ipnum);
+        return $this->_get_org($ipnum);
     }
 
     public function geoip_org_by_addr ($addr) {
-        return geoip_name_by_addr($addr);
+        return $this->geoip_name_by_addr($addr);
     }
 
     public function _get_region($ipnum){
         if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0){
-            $seek_region = _geoip_seek_country($ipnum) - self::GEOIP_STATE_BEGIN_REV0;
+            $seek_region = $this->_geoip_seek_country($ipnum) - self::GEOIP_STATE_BEGIN_REV0;
             if ($seek_region >= 1000){
                 $country_code = "US";
                 $region = chr(($seek_region - 1000)/26 + 65) . chr(($seek_region - 1000)%26 + 65);
@@ -860,6 +858,7 @@ class GeoIp {
             }
         }
         mb_internal_encoding($enc);
+        var_dump($record);
         return $record;
     }
 
