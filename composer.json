@@ -1,13 +1,29 @@
 {
     "name": "maxmind/geoip",
-    "type": "library",
-    "description": "MaxMind GeoIP Library for PHP",
+    "type": "symfony-bundle",
+    "description": "MaxMind GeoIP Symfony2 Bundle",
     "keywords": ["maxmind geoip"],
     "version": "1.0.0",
     "license": "BSD",
     "require": {
         "php": ">=5.3"
     },
+    "authors": [
+        {
+            "name": "Ariel Ferrandini",
+            "email": "arielferrandini@gmail.com",
+            "homepage": "http://ferrandini.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Sébastien Roch",
+            "role": "Developer"
+        },
+        {
+            "name": "Gabriel BONDAZ",
+            "email": "gabriel.bondaz@idci-consulting.fr",
+            "role": "Developer"
+        },
     "autoload": {
         "psr-0" : {
             "Maxmind" : "src/"
