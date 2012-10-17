@@ -23,7 +23,8 @@
             "name": "Gabriel BONDAZ",
             "email": "gabriel.bondaz@idci-consulting.fr",
             "role": "Developer"
-        },
+        }
+    ],
     "autoload": {
         "psr-0" : {
             "Maxmind" : "src/"
