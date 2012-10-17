@@ -2,26 +2,18 @@
 
 To install this library please follow the next steps:
 
-First add the repo to your `deps` file:
+First add the dependencie to your `composer.json` file:
 
-    [Maxmind]
-        git=https://aferrandini@github.com/aferrandini/Maxmind-GeoIp.git
-        target=maxmind
+    "require": {
+        ...
+        "maxmind/geoip": "dev-master"
+    },
 
-Then install the library with the command:
+Then install the bundle with the command:
 
-    ./bin/vendors install
+    php composer update
 
-Now the library is installed so, now we need to load in the `autoload.php`
-
-Open the file `./app/autoload.php` and add this line:
-
-    $loader->registerPrefixes(array(
-        // ...
-        'Maxmind' => __DIR__.'/../vendor/maxmind/src',
-        // ...
-    ));
-
-Now you can use the Maxmind GeoIp Library everywhere in your Symfony2 app!
+Now the library is installed.
+You can use the Maxmind GeoIp Library everywhere in your Symfony2 app!
 
 This library is an import of Maxmind GeoIp Free Library, you can find at http://www.maxmind.com/
