@@ -1,10 +1,6 @@
 <?php
-/**
- * GeoIpDNSRecord.php
- *
- * Created by aferrandini
- */
-namespace Maxmind;
+
+namespace Maxmind\lib;
 
 class GeoIpDNSRecord
 {

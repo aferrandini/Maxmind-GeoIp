@@ -1,10 +1,6 @@
 <?php
-/**
- * GeoIpRecord.php
- *
- * Created by aferrandini
- */
-namespace Maxmind;
+
+namespace Maxmind\lib;
 
 class GeoIpRecord
 {

@@ -1,4 +1,7 @@
 <?php
+
+namespace Maxmind\lib;
+
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /* geoip.inc
  *
@@ -18,7 +21,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-namespace Maxmind;
 
 class GeoIp {
     const GEOIP_COUNTRY_BEGIN = 16776960;
