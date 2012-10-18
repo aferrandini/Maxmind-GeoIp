@@ -8,9 +8,14 @@ class GeoipManager
 {
     protected $geoip = null;
 
-    public function __construct()
+    public function __construct($kernel)
     {
-        $this->geoip = new GeoIp('/home/gabriel/workspace/imerys/vendor/maxmind/geoip/data/GeoLiteCity.dat');
+        $bundlePath = $kernel->getBundle('MaxmindGeoipBundle')->getPath();
+        $filePath = sprintf('%s/%s',
+            $bundlePath.'/../../../../data',
+            'GeoLiteCity.dat'
+        );
+        $this->geoip = new GeoIp($filePath);
     }
 
     public function getCountry($ip)

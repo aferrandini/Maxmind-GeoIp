@@ -33,7 +33,8 @@ Declare the GeoipManager service in your 'config.yml' like this:
     # Services
     services:
         geoip:
-            class:        Maxmind\Bundle\GeoipBundle\Service\GeoipManager
+            class:      Maxmind\Bundle\GeoipBundle\Service\GeoipManager
+            arguments:  [@kernel]
 
 Now can use the Maxmind GeoIp Library everywhere in your Symfony2 app.
 

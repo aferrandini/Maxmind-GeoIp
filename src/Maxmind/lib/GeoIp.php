@@ -858,7 +858,6 @@ class GeoIp {
             }
         }
         mb_internal_encoding($enc);
-        var_dump($record);
         return $record;
     }
 
