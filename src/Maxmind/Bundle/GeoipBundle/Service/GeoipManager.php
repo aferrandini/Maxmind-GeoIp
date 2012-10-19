@@ -25,7 +25,10 @@ class GeoipManager
     {
         $this->record = $this->geoip->geoip_record_by_addr($ip);
 
-        return $this;
+        if ($this->record)
+            return $this;
+
+        return false;
     }
 
     public function getCountryCode($ip = null)
@@ -57,6 +60,17 @@ class GeoipManager
 
         if ($this->record)
             return $this->record->country_name;
+
+        return $this->record;
+    }
+
+    public function getRegionCode($ip = null)
+    {
+        if ($ip)
+            $this->lookup($ip);
+
+        if ($this->record)
+          return $this->record->region;
 
         return $this->record;
     }
