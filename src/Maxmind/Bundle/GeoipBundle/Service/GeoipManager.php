@@ -33,7 +33,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->country_code;
+        if ($this->record)
+            return $this->record->country_code;
+
+        return $this->record;
     }
 
     public function getCountryCode3($ip = null)
@@ -41,7 +44,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->country_code3;
+        if ($this->record)
+            return $this->record->country_code3;
+
+        return $this->record;
     }
 
     public function getCountryName($ip = null)
@@ -49,7 +55,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->country_name;
+        if ($this->record)
+            return $this->record->country_name;
+
+        return $this->record;
     }
 
     public function getRegion($ip = null)
@@ -57,10 +66,13 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return GeoIpRegionVars::$GEOIP_REGION_NAME
-          [$this->record->country_code]
-          [$this->record->region]
-        ;
+        if ($this->record)
+          return GeoIpRegionVars::$GEOIP_REGION_NAME
+            [$this->record->country_code]
+            [$this->record->region]
+          ;
+
+        return $this->record;
     }
 
     public function getCity($ip = null)
@@ -68,7 +80,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->city;
+        if ($this->record)
+            return $this->record->city;
+
+        return $this->record;
     }
 
     public function getPostalCode($ip = null)
@@ -76,7 +91,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->postal_code;
+        if ($this->record)
+            return $this->record->postal_code;
+
+        return $this->record;
     }
 
     public function getLatitude($ip = null)
@@ -84,7 +102,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->latitude;
+        if ($this->record)
+            return $this->record->latitude;
+
+        return $this->record;
     }
 
     public function getLongitude($ip = null)
@@ -92,7 +113,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->latitude;
+        if ($this->record)
+            return $this->record->longitude;
+
+        return $this->record;
     }
 
     public function getAreaCode($ip = null)
@@ -100,7 +124,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->area_code;
+        if ($this->record)
+            return $this->record->area_code;
+
+        return $this->record;
     }
 
     public function getMetroCode($ip = null)
@@ -108,7 +135,10 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->metro_code;
+        if ($this->record)
+            return $this->record->metro_code;
+
+        return $this->record;
     }
 
     public function getContinentCode($ip = null)
@@ -116,6 +146,9 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        return $this->record->continent_code;
+        if ($this->record)
+            return $this->record->continent_code;
+
+        return $this->record;
     }
 }
