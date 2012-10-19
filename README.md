@@ -13,7 +13,7 @@ Then install the bundle with the command:
 
     php composer update
 
-Enable bundle in the kernel:
+Enable the bundle in your application kernel:
 
     <?php
     // app/AppKernel.php
@@ -36,25 +36,48 @@ Declare the GeoipManager service in your 'config.yml' like this:
             class:      Maxmind\Bundle\GeoipBundle\Service\GeoipManager
             arguments:  [@kernel]
 
-Now can use the Maxmind GeoIp Library everywhere in your Symfony2 app.
+Now you have to get the maxmind data source file (in '.dat' format), with one of
+the two following purposed method:
+
+You can go on the maxmind free download data page:
+http://dev.maxmind.com/geoip/geolite
+And get the needed version. Then you have to unzip the downloaded file in the data
+directory located in 'vendor/maxmind/geoip/data'.
+
+Or you can simply execute this command:
+
+    php app/console maxmind:geoip:update-data %url-data-source%
+
+Replace %url-data-source% with the url of the needed data source.
+ex: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+
+Now can use the Maxmind GeoIp Library everywhere in your Symfony2 application.
 
 The following exemples are available if you are in a controller
 
-To retrieve the country:
+    $geoip = $this->get('geoip')->lookup(%IP_ADDR%);
 
-    $this->get('geoip')->getCountry(%IP_ADDR%);
+    $geoip->getCountryCode();
+    $geoip->getCountryCode3();
+    $geoip->getCountryName();
+    $geoip->getRegion();
+    $geoip->getCity();
+    $geoip->getPostalCode();
+    $geoip->getLatitude();
+    $geoip->getLongitude();
+    $geoip->getAreaCode();
+    $geoip->getMetroCode();
+    $geoip->getContinentCode();
 
-To retrieve the country ISO code:
+You can add a demo route in your 'routing_dev' to get an exemple on how
+this bundle work for exemple:
 
-    $this->get('geoip')->getCountryIsoCode(%IP_ADDR%);
+    _maxmind_geoip:
+        resource: "@MaxmindGeoipBundle/Controller/DemoController.php"
+        type:     annotation
+        prefix:   /demo
 
-To retrieve the region:
+Get a lookup at /demo/geoip
 
-    $this->get('geoip')->getRegion(%IP_ADDR%);
-
-To retrieve the city:
-
-    $this->get('geoip')->getCity(%IP_ADDR%);
-
-
-This library is an import of Maxmind GeoIp Free Library, you can find at http://www.maxmind.com/
+This library is an import of Maxmind GeoIp Free Library,
+you can find at http://www.maxmind.com/

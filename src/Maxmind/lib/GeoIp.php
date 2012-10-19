@@ -278,9 +278,9 @@ class GeoIp {
                     $this->databaseType = ord(@shmop_read ($this->shmid, $offset, 1));
                     $offset++;
 
-                    if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0){
+                    if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0) {
                         $this->databaseSegments = self::GEOIP_STATE_BEGIN_REV0;
-                    } else if ($this->databaseType == self::GEOIP_REGION_EDITION_REV1){
+                    } else if ($this->databaseType == self::GEOIP_REGION_EDITION_REV1) {
                         $this->databaseSegments = self::GEOIP_STATE_BEGIN_REV1;
                     } else if (($this->databaseType == self::GEOIP_CITY_EDITION_REV0)||
                         ($this->databaseType == self::GEOIP_CITY_EDITION_REV1)
@@ -299,10 +299,10 @@ class GeoIp {
                         || ($this->databaseType == self::GEOIP_NETSPEED_EDITION_REV1)
                         || ($this->databaseType == self::GEOIP_NETSPEED_EDITION_REV1_V6)
                         || ($this->databaseType == self::GEOIP_ASNUM_EDITION)
-                        || ($this->databaseType == self::GEOIP_ASNUM_EDITION_V6)){
+                        || ($this->databaseType == self::GEOIP_ASNUM_EDITION_V6)) {
                         $this->databaseSegments = 0;
                         $buf = @shmop_read ($this->shmid, $offset, self::SEGMENT_RECORD_LENGTH);
-                        for ($j = 0;$j < self::SEGMENT_RECORD_LENGTH;$j++){
+                        for ($j = 0;$j < self::SEGMENT_RECORD_LENGTH;$j++) {
                             $this->databaseSegments += (ord($buf[$j]) << ($j * 8));
                         }
                         if (($this->databaseType == self::GEOIP_ORG_EDITION)
@@ -322,7 +322,7 @@ class GeoIp {
             if (($this->databaseType == self::GEOIP_COUNTRY_EDITION)||
                 ($this->databaseType == self::GEOIP_COUNTRY_EDITION_V6)||
                 ($this->databaseType == self::GEOIP_PROXY_EDITION)||
-                ($this->databaseType == self::GEOIP_NETSPEED_EDITION)){
+                ($this->databaseType == self::GEOIP_NETSPEED_EDITION)) {
                 $this->databaseSegments = self::GEOIP_COUNTRY_BEGIN;
             }
         } else {
@@ -330,12 +330,12 @@ class GeoIp {
             fseek($this->filehandle, -3, SEEK_END);
             for ($i = 0; $i < self::STRUCTURE_INFO_MAX_SIZE; $i++) {
                 $delim = fread($this->filehandle,3);
-                if ($delim == (chr(255).chr(255).chr(255))){
+                if ($delim == (chr(255).chr(255).chr(255))) {
                     $this->databaseType = ord(fread($this->filehandle,1));
-                    if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0){
+                    if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0) {
                         $this->databaseSegments = self::GEOIP_STATE_BEGIN_REV0;
                     }
-                    else if ($this->databaseType == self::GEOIP_REGION_EDITION_REV1){
+                    else if ($this->databaseType == self::GEOIP_REGION_EDITION_REV1) {
                         $this->databaseSegments = self::GEOIP_STATE_BEGIN_REV1;
                     }  else if (($this->databaseType == self::GEOIP_CITY_EDITION_REV0)
                         || ($this->databaseType == self::GEOIP_CITY_EDITION_REV1)
@@ -356,10 +356,10 @@ class GeoIp {
                         || ($this->databaseType == self::GEOIP_USERTYPE_EDITION)
                         || ($this->databaseType == self::GEOIP_USERTYPE_EDITION_V6)
                         || ($this->databaseType == self::GEOIP_ASNUM_EDITION)
-                        || ($this->databaseType == self::GEOIP_ASNUM_EDITION_V6)){
+                        || ($this->databaseType == self::GEOIP_ASNUM_EDITION_V6)) {
                         $this->databaseSegments = 0;
                         $buf = fread($this->filehandle,self::SEGMENT_RECORD_LENGTH);
-                        for ($j = 0;$j < self::SEGMENT_RECORD_LENGTH;$j++){
+                        for ($j = 0;$j < self::SEGMENT_RECORD_LENGTH;$j++) {
                             $this->databaseSegments += (ord($buf[$j]) << ($j * 8));
                         }
                         if (   ( $this->databaseType == self::GEOIP_ORG_EDITION )
@@ -379,7 +379,7 @@ class GeoIp {
             if (($this->databaseType == self::GEOIP_COUNTRY_EDITION)||
                 ($this->databaseType == self::GEOIP_COUNTRY_EDITION_V6)||
                 ($this->databaseType == self::GEOIP_PROXY_EDITION)||
-                ($this->databaseType == self::GEOIP_NETSPEED_EDITION)){
+                ($this->databaseType == self::GEOIP_NETSPEED_EDITION)) {
                 $this->databaseSegments = self::GEOIP_COUNTRY_BEGIN;
             }
             fseek($this->filehandle,$filepos,SEEK_SET);
@@ -615,7 +615,7 @@ class GeoIp {
         return false;
     }
 
-    public function _common_get_org($seek_org){
+    public function _common_get_org($seek_org) {
         $record_pointer = $seek_org + (2 * $this->record_length - 1) * $this->databaseSegments;
         if ($this->flags & self::GEOIP_SHARED_MEMORY) {
             $org_buf = @shmop_read ($this->shmid, $record_pointer, self::MAX_ORG_RECORD_LENGTH);
@@ -632,7 +632,7 @@ class GeoIp {
         return $org_buf;
     }
 
-    public function _get_org_v6($ipnum){
+    public function _get_org_v6($ipnum) {
         $seek_org = _geoip_seek_country_v6($ipnum);
         if ($seek_org == $this->databaseSegments) {
             return NULL;
@@ -640,7 +640,7 @@ class GeoIp {
         return $this->_common_get_org($seek_org);
     }
 
-    public function _get_org($ipnum){
+    public function _get_org($ipnum) {
         $seek_org = $this->_geoip_seek_country($ipnum);
         if ($seek_org == $this->databaseSegments) {
             return NULL;
@@ -668,10 +668,10 @@ class GeoIp {
         return $this->geoip_name_by_addr($addr);
     }
 
-    public function _get_region($ipnum){
-        if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0){
+    public function _get_region($ipnum) {
+        if ($this->databaseType == self::GEOIP_REGION_EDITION_REV0) {
             $seek_region = $this->_geoip_seek_country($ipnum) - self::GEOIP_STATE_BEGIN_REV0;
-            if ($seek_region >= 1000){
+            if ($seek_region >= 1000) {
                 $country_code = "US";
                 $region = chr(($seek_region - 1000)/26 + 65) . chr(($seek_region - 1000)%26 + 65);
             } else {
@@ -682,7 +682,7 @@ class GeoIp {
         }  else if ($this->databaseType == self::GEOIP_REGION_EDITION_REV1) {
             $seek_region = _geoip_seek_country($ipnum) - self::GEOIP_STATE_BEGIN_REV1;
             //print $seek_region;
-            if ($seek_region < self::US_OFFSET){
+            if ($seek_region < self::US_OFFSET) {
                 $country_code = "";
                 $region = "";
             } else if ($seek_region < self::CANADA_OFFSET) {
@@ -707,7 +707,7 @@ class GeoIp {
         return $this->_get_region($ipnum);
     }
 
-    public function getdnsattributes ($l,$ip){
+    public function getdnsattributes ($l,$ip) {
         $r = new Net_DNS_Resolver();
         $r->nameservers = array("ws1.maxmind.com");
         $p = $r->search($l."." . $ip .".s.maxmind.com","TXT","IN");
@@ -716,40 +716,40 @@ class GeoIp {
         return $str;
     }
 
-    public function getrecordwithdnsservice($str){
+    public function getrecordwithdnsservice($str) {
         $record = new GeoIpDNSRecord();
         $keyvalue = explode(";",$str);
-        foreach ($keyvalue as $keyvalue2){
+        foreach ($keyvalue as $keyvalue2) {
             list($key,$value) = explode("=",$keyvalue2);
-            if ($key == "co"){
+            if ($key == "co") {
                 $record->country_code = $value;
             }
-            if ($key == "ci"){
+            if ($key == "ci") {
                 $record->city = $value;
             }
-            if ($key == "re"){
+            if ($key == "re") {
                 $record->region = $value;
             }
-            if ($key == "ac"){
+            if ($key == "ac") {
                 $record->areacode = $value;
             }
-            if ($key == "dm" || $key == "me" ){
+            if ($key == "dm" || $key == "me" ) {
                 $record->dmacode   = $value;
                 $record->metrocode = $value;
             }
-            if ($key == "is"){
+            if ($key == "is") {
                 $record->isp = $value;
             }
-            if ($key == "or"){
+            if ($key == "or") {
                 $record->org = $value;
             }
-            if ($key == "zi"){
+            if ($key == "zi") {
                 $record->postal_code = $value;
             }
-            if ($key == "la"){
+            if ($key == "la") {
                 $record->latitude = $value;
             }
-            if ($key == "lo"){
+            if ($key == "lo") {
                 $record->longitude = $value;
             }
         }
@@ -757,7 +757,7 @@ class GeoIp {
         $record->country_code3 = $GLOBALS['GEOIP_COUNTRY_CODES3'][$number];
         $record->country_name = $GLOBALS['GEOIP_COUNTRY_NAMES'][$number];
         if ($record->region != "") {
-            if (($record->country_code == "US") || ($record->country_code == "CA")){
+            if (($record->country_code == "US") || ($record->country_code == "CA")) {
                 $record->regionname = $GLOBALS['ISO'][$record->country_code][$record->region];
             } else {
                 $record->regionname = $GLOBALS['FIPS'][$record->country_code][$record->region];
@@ -767,7 +767,7 @@ class GeoIp {
     }
 
 
-    public function _get_record_v6($ipnum){
+    public function _get_record_v6($ipnum) {
         $seek_country = $this->_geoip_seek_country_v6($ipnum);
         if ($seek_country == $this->databaseSegments) {
             return NULL;
@@ -775,7 +775,7 @@ class GeoIp {
         return $this->_common_get_record($seek_country);
     }
 
-    public function _common_get_record($seek_country){
+    public function _common_get_record($seek_country) {
         // workaround php's broken substr, strpos, etc handling with
         // mbstring.func_overload and mbstring.internal_encoding
         $enc = mb_internal_encoding();
@@ -785,7 +785,7 @@ class GeoIp {
 
         if ($this->flags & self::GEOIP_MEMORY_CACHE) {
             $record_buf = substr($this->memory_buffer,$record_pointer,self::FULL_RECORD_LENGTH);
-        } elseif ($this->flags & self::GEOIP_SHARED_MEMORY){
+        } elseif ($this->flags & self::GEOIP_SHARED_MEMORY) {
             $record_buf = @shmop_read($this->shmid,$record_pointer,self::FULL_RECORD_LENGTH);
         } else {
             fseek($this->filehandle, $record_pointer, SEEK_SET);
@@ -802,33 +802,33 @@ class GeoIp {
         $str_length = 0;
         // Get region
         $char = ord(substr($record_buf,$record_buf_pos+$str_length,1));
-        while ($char != 0){
+        while ($char != 0) {
             $str_length++;
             $char = ord(substr($record_buf,$record_buf_pos+$str_length,1));
         }
-        if ($str_length > 0){
+        if ($str_length > 0) {
             $record->region = substr($record_buf,$record_buf_pos,$str_length);
         }
         $record_buf_pos += $str_length + 1;
         $str_length = 0;
         // Get city
         $char = ord(substr($record_buf,$record_buf_pos+$str_length,1));
-        while ($char != 0){
+        while ($char != 0) {
             $str_length++;
             $char = ord(substr($record_buf,$record_buf_pos+$str_length,1));
         }
-        if ($str_length > 0){
+        if ($str_length > 0) {
             $record->city = substr($record_buf,$record_buf_pos,$str_length);
         }
         $record_buf_pos += $str_length + 1;
         $str_length = 0;
         // Get postal code
         $char = ord(substr($record_buf,$record_buf_pos+$str_length,1));
-        while ($char != 0){
+        while ($char != 0) {
             $str_length++;
             $char = ord(substr($record_buf,$record_buf_pos+$str_length,1));
         }
-        if ($str_length > 0){
+        if ($str_length > 0) {
             $record->postal_code = substr($record_buf,$record_buf_pos,$str_length);
         }
         $record_buf_pos += $str_length + 1;
@@ -836,20 +836,20 @@ class GeoIp {
         // Get latitude and longitude
         $latitude = 0;
         $longitude = 0;
-        for ($j = 0;$j < 3; ++$j){
+        for ($j = 0;$j < 3; ++$j) {
             $char = ord(substr($record_buf,$record_buf_pos++,1));
             $latitude += ($char << ($j * 8));
         }
         $record->latitude = ($latitude/10000) - 180;
-        for ($j = 0;$j < 3; ++$j){
+        for ($j = 0;$j < 3; ++$j) {
             $char = ord(substr($record_buf,$record_buf_pos++,1));
             $longitude += ($char << ($j * 8));
         }
         $record->longitude = ($longitude/10000) - 180;
-        if (self::GEOIP_CITY_EDITION_REV1 == $this->databaseType){
+        if (self::GEOIP_CITY_EDITION_REV1 == $this->databaseType) {
             $metroarea_combo = 0;
-            if ($record->country_code == "US"){
-                for ($j = 0;$j < 3;++$j){
+            if ($record->country_code == "US") {
+                for ($j = 0;$j < 3;++$j) {
                     $char = ord(substr($record_buf,$record_buf_pos++,1));
                     $metroarea_combo += ($char << ($j * 8));
                 }
@@ -861,15 +861,15 @@ class GeoIp {
         return $record;
     }
 
-    public function geoip_record_by_addr_v6 ($addr){
-        if ($addr == NULL){
+    public function geoip_record_by_addr_v6 ($addr) {
+        if ($addr == NULL) {
             return 0;
         }
         $ipnum = inet_pton($addr);
         return $this->_get_record_v6($ipnum);
     }
 
-    public function _get_record($ipnum){
+    public function _get_record($ipnum) {
         $seek_country = $this->_geoip_seek_country($ipnum);
         if ($seek_country == $this->databaseSegments) {
             return NULL;
@@ -877,8 +877,8 @@ class GeoIp {
         return $this->_common_get_record($seek_country);
     }
 
-    public function geoip_record_by_addr($addr){
-        if ($addr == NULL){
+    public function geoip_record_by_addr($addr) {
+        if ($addr == NULL) {
             return 0;
         }
         $ipnum = ip2long($addr);

@@ -1,0 +1,56 @@
+{% extends "MaxmindGeoipBundle::layout.html.twig" %}
+
+{% block title "GeoIP" %}
+
+{% block content %}
+    <h1>GeoIp</h1>
+
+    <table>
+      <tr>
+        <th>Country Code</th>
+        <td>{{ geoip.countryCode }}</td>
+      </tr>
+      <tr>
+        <th>Country Code 3</th>
+        <td>{{ geoip.countryCode3 }}</td>
+      </tr>
+      <tr>
+        <th>Country Name</th>
+        <td>{{ geoip.countryName}}</td>
+      </tr>
+      <tr>
+        <th>Region</th>
+        <td>{{ geoip.region }}</td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td>{{ geoip.city }}</td>
+      </tr>
+      <tr>
+        <th>Postal Code</th>
+        <td>{{ geoip.postalCode }}</td>
+      </tr>
+      <tr>
+        <th>Latitude</th>
+        <td>{{ geoip.latitude }}</td>
+      </tr>
+      <tr>
+        <th>Longitude</th>
+        <td>{{ geoip.longitude }}</td>
+      </tr>
+      <tr>
+        <th>Area Code</th>
+        <td>{{ geoip.areaCode }}</td>
+      </tr>
+      <tr>
+        <th>Metro Code</th>
+        <td>{{ geoip.metroCode }}</td>
+      </tr>
+      <tr>
+        <th>Continent Code</th>
+        <td>{{ geoip.continentCode }}</td>
+      </tr>
+    </table>
+{% endblock %}
+
+{% set code = code(_self) %}

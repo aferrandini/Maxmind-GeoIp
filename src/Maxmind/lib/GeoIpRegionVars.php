@@ -1,6 +1,6 @@
 <?php
 
-namespace Maxmind;
+namespace Maxmind\lib;
 
 class GeoIpRegionVars
 {

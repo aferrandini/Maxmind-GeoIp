@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Maxmind GeoIp Bundle{% endblock %}</title>
+        <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="symfony-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        {% if code is defined %}
+            <h2>Code behind this page</h2>
+            <div class="symfony-content">{{ code|raw }}</div>
+        {% endif %}
+    </body>
+</html>
