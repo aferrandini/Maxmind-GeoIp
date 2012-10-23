@@ -1,0 +1,5 @@
+# Services
+services:
+    maxmind.geoip:
+        class:      Maxmind\Bundle\GeoipBundle\Service\GeoipManager
+        arguments:  [@kernel]

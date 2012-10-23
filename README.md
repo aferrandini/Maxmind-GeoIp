@@ -28,16 +28,8 @@ Enable the bundle in your application kernel:
 
 Now the library is installed.
 
-Declare the GeoipManager service in your 'config.yml' like this:
-
-    # Services
-    services:
-        geoip:
-            class:      Maxmind\Bundle\GeoipBundle\Service\GeoipManager
-            arguments:  [@kernel]
-
-Now you have to get the maxmind data source file (in '.dat' format), with one of
-the two following purposed method:
+To get the maxmind data source file (in '.dat' format), you can choose between 
+one of the two following purposed methods:
 
 You can go on the maxmind free download data page:
 http://dev.maxmind.com/geoip/geolite
@@ -55,7 +47,7 @@ Now can use the Maxmind GeoIp Library everywhere in your Symfony2 application.
 
 The following exemples are available if you are in a controller
 
-    $geoip = $this->get('geoip')->lookup(%IP_ADDR%);
+    $geoip = $this->get('maxmind.geoip')->lookup(%IP_ADDR%);
 
     $geoip->getCountryCode();
     $geoip->getCountryCode3();
