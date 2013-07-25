@@ -125,7 +125,7 @@ class GeoIp {
         "VU" => 234, "WF" => 235, "WS" => 236, "YE" => 237, "YT" => 238, "RS" => 239,
         "ZA" => 240, "ZM" => 241, "ME" => 242, "ZW" => 243, "A1" => 244, "A2" => 245,
         "O1" => 246, "AX" => 247, "GG" => 248, "IM" => 249, "JE" => 250, "BL" => 251,
-        "MF" => 252, "BQ" => 253,
+        "MF" => 252, "BQ" => 253, "SS" => 254
     );
     public $GEOIP_COUNTRY_CODES = array(
         "","AP","EU","AD","AE","AF","AG","AI","AL","AM","CW",
@@ -153,7 +153,7 @@ class GeoIp {
         "TZ","UA","UG","UM","US","UY","UZ","VA","VC","VE",
         "VG","VI","VN","VU","WF","WS","YE","YT","RS","ZA",
         "ZM","ME","ZW","A1","A2","O1","AX","GG","IM","JE",
-        "BL","MF", "BQ");
+        "BL","MF", "BQ", "SS", "O1" );
     public $GEOIP_COUNTRY_CODES3 = array(
         "","AP","EU","AND","ARE","AFG","ATG","AIA","ALB","ARM","CUW",
         "AGO","ATA","ARG","ASM","AUT","AUS","ABW","AZE","BIH","BRB",
@@ -180,7 +180,7 @@ class GeoIp {
         "TZA","UKR","UGA","UMI","USA","URY","UZB","VAT","VCT","VEN",
         "VGB","VIR","VNM","VUT","WLF","WSM","YEM","MYT","SRB","ZAF",
         "ZMB","MNE","ZWE","A1","A2","O1","ALA","GGY","IMN","JEY",
-        "BLM","MAF", "BES"
+        "BLM","MAF", "BES", "SSD", "O1"
     );
     public $GEOIP_COUNTRY_NAMES = array(
         "","Asia/Pacific Region","Europe","Andorra","United Arab Emirates","Afghanistan","Antigua and Barbuda","Anguilla","Albania","Armenia","Curacao",
@@ -208,7 +208,8 @@ class GeoIp {
         "Tanzania, United Republic of","Ukraine","Uganda","United States Minor Outlying Islands","United States","Uruguay","Uzbekistan","Holy See (Vatican City State)","Saint Vincent and the Grenadines","Venezuela",
         "Virgin Islands, British","Virgin Islands, U.S.","Vietnam","Vanuatu","Wallis and Futuna","Samoa","Yemen","Mayotte","Serbia","South Africa",
         "Zambia","Montenegro","Zimbabwe","Anonymous Proxy","Satellite Provider","Other","Aland Islands","Guernsey","Isle of Man","Jersey",
-        "Saint Barthelemy","Saint Martin", "Bonaire, Saint Eustatius and Saba"
+        "Saint Barthelemy","Saint Martin", "Bonaire, Saint Eustatius and Saba",
+        "South Sudan", "Other"
     );
 
     public $GEOIP_CONTINENT_CODES = array(
@@ -237,7 +238,7 @@ class GeoIp {
         "AF","EU","AF","OC","NA","SA","AS","EU","NA","SA",
         "NA","NA","AS","OC","OC","OC","AS","AF","EU","AF",
         "AF","EU","AF","--","--","--","EU","EU","EU","EU",
-        "NA","NA","NA"
+        "NA","NA","NA", "AF", "--"
     );
 
     private $filename = '';
