@@ -15,7 +15,7 @@ class DemoController extends Controller
      */
     public function indexAction()
     {
-        $geoip = $this->get('geoip')->lookup('74.125.230.215');
+        $geoip = $this->get('maxmind.geoip')->lookup('74.125.230.215');
 
         return array('geoip' => $geoip);
     }
