@@ -61,7 +61,7 @@ EOT
         $output->writeln('<info>Download completed</info>');
         $output->writeln('Unzip the downloading data');
         $output->writeln('...');
-        system('gunzip '.$destination);
+        system('gunzip -f '.$destination);
         $output->writeln('<info>Unzip completed</info>');
 
         return true;
