@@ -78,13 +78,16 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        if ($this->record)
+        if ($this->record
+                && $this->record->country_code
+                && $this->record->region
+        )
           return GeoIpRegionVars::$GEOIP_REGION_NAME
             [$this->record->country_code]
             [$this->record->region]
           ;
 
-        return $this->record;
+        return null;
     }
 
     public function getCity($ip = null)
