@@ -43,7 +43,19 @@ Or you can simply execute this command:
 Replace %url-data-source% with the url of the needed data source.
 ex: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 
+If you want to use your data file in another directory, you can configure it on `app\config\config.yml`
+
+
+```js
+# app/config/config.yml
+maxmind_geoip:
+	data_file_path: "%kernel.root_dir%/../web/GeoIPCity.dat"
+```
+
 Now can use the Maxmind GeoIp Library everywhere in your Symfony2 application.
+
+Usage
+-----
 
 The following exemples are available if you are in a controller
 
