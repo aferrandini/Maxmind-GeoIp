@@ -4,27 +4,33 @@ To install this library please follow the next steps:
 
 First add the dependencie to your `composer.json` file:
 
-    "require": {
-        ...
-        "maxmind/geoip": "dev-master"
-    },
+```json
+"require": {
+    ...
+    "maxmind/geoip": "dev-master"
+},
+```
 
 Then install the bundle with the command:
 
-    php composer update
+```sh
+php composer update
+```
 
 Enable the bundle in your application kernel:
 
-    <?php
-    // app/AppKernel.php
+```php
+<?php
+// app/AppKernel.php
 
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Maxmind\Bundle\GeoipBundle\MaxmindGeoipBundle(),
-        );
-    }
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Maxmind\Bundle\GeoipBundle\MaxmindGeoipBundle(),
+    );
+}
+```
 
 Now the library is installed.
 
@@ -38,15 +44,16 @@ directory located in 'vendor/maxmind/geoip/data'.
 
 Or you can simply execute this command:
 
-    php app/console maxmind:geoip:update-data %url-data-source%
+```sh
+php app/console maxmind:geoip:update-data %url-data-source%
+```
 
 Replace %url-data-source% with the url of the needed data source.
 ex: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 
 If you want to use your data file in another directory, you can configure it on `app\config\config.yml`
 
-
-```js
+```yaml
 # app/config/config.yml
 maxmind_geoip:
 	data_file_path: "%kernel.root_dir%/../web/GeoIPCity.dat"
@@ -59,27 +66,31 @@ Usage
 
 The following exemples are available if you are in a controller
 
-    $geoip = $this->get('maxmind.geoip')->lookup(%IP_ADDR%);
+```php
+$geoip = $this->get('maxmind.geoip')->lookup(%IP_ADDR%);
 
-    $geoip->getCountryCode();
-    $geoip->getCountryCode3();
-    $geoip->getCountryName();
-    $geoip->getRegion();
-    $geoip->getCity();
-    $geoip->getPostalCode();
-    $geoip->getLatitude();
-    $geoip->getLongitude();
-    $geoip->getAreaCode();
-    $geoip->getMetroCode();
-    $geoip->getContinentCode();
+$geoip->getCountryCode();
+$geoip->getCountryCode3();
+$geoip->getCountryName();
+$geoip->getRegion();
+$geoip->getCity();
+$geoip->getPostalCode();
+$geoip->getLatitude();
+$geoip->getLongitude();
+$geoip->getAreaCode();
+$geoip->getMetroCode();
+$geoip->getContinentCode();
+```
 
 You can add a demo route in your 'routing_dev' to get an exemple on how
 this bundle work for exemple:
 
-    _maxmind_geoip:
-        resource: "@MaxmindGeoipBundle/Controller/DemoController.php"
-        type:     annotation
-        prefix:   /demo
+```yaml
+_maxmind_geoip:
+    resource: "@MaxmindGeoipBundle/Controller/DemoController.php"
+    type:     annotation
+    prefix:   /demo
+```
 
 Get a lookup at /demo/geoip
 
