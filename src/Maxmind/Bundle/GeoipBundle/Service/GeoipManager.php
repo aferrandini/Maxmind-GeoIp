@@ -2,6 +2,8 @@
 
 namespace Maxmind\Bundle\GeoipBundle\Service;
 
+use Symfony\Component\HttpKernel\Kernel;
+
 use Maxmind\lib\GeoIp;
 use Maxmind\lib\GeoIpRegionVars;
 
@@ -11,13 +13,9 @@ class GeoipManager
 
     protected $record = null;
 
-    public function __construct($kernel)
+    public function __construct(Kernel $kernel)
     {
-        $bundlePath = $kernel->getBundle('MaxmindGeoipBundle')->getPath();
-        $filePath = sprintf('%s/%s',
-            $bundlePath.'/../../../../data',
-            'GeoLiteCity.dat'
-        );
+    	$filePath = $kernel->getContainer()->getParameter('maxmind_geoip_data_file_path');
         $this->geoip = new GeoIp($filePath);
     }
 
@@ -80,13 +78,16 @@ class GeoipManager
         if ($ip)
             $this->lookup($ip);
 
-        if ($this->record)
+        if ($this->record
+                && $this->record->country_code
+                && $this->record->region
+        )
           return GeoIpRegionVars::$GEOIP_REGION_NAME
             [$this->record->country_code]
             [$this->record->region]
           ;
 
-        return $this->record;
+        return null;
     }
 
     public function getCity($ip = null)

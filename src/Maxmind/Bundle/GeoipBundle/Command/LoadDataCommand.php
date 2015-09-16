@@ -56,14 +56,13 @@ EOT
         if (!copy($source, $destination)) {
             $output->writeln('<error>Error during file download occured</error>');
 
-            return false;
+            return 1;
         }
+
         $output->writeln('<info>Download completed</info>');
         $output->writeln('Unzip the downloading data');
         $output->writeln('...');
-        system('gunzip '.$destination);
+        system('gunzip -f "'.$destination.'"');
         $output->writeln('<info>Unzip completed</info>');
-
-        return true;
     }
 }
