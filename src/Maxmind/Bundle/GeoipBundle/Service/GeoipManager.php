@@ -23,7 +23,10 @@ class GeoipManager
 
     public function lookup($ip)
     {
-        $this->record = $this->geoip->geoip_record_by_addr($ip);
+        if((strpos($ip, ':') === false))
+            $this->record = $this->getGeoip()->geoip_record_by_addr($ip);
+        else
+            $this->record = $this->getGeoip()->geoip_record_by_addr_v6($ip);
 
         if ($this->record)
             return $this;
