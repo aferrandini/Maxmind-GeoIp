@@ -6,7 +6,7 @@ First add the dependencie to your `composer.json` file:
 
     "require": {
         ...
-        "maxmind/geoip": "dev-master"
+        "maxmind/geoip": "~1.0.0"
     },
 
 Then install the bundle with the command:
