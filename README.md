@@ -45,7 +45,7 @@ ex: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 
 Now can use the Maxmind GeoIp Library everywhere in your Symfony2 application.
 
-The following exemples are available if you are in a controller
+The following examples are available if you are in a controller
 
     $geoip = $this->get('maxmind.geoip')->lookup(%IP_ADDR%);
 
@@ -61,8 +61,8 @@ The following exemples are available if you are in a controller
     $geoip->getMetroCode();
     $geoip->getContinentCode();
 
-You can add a demo route in your 'routing_dev' to get an exemple on how
-this bundle work for exemple:
+You can add a demo route in your 'routing_dev' to get an example on how
+this bundle work for example:
 
     _maxmind_geoip:
         resource: "@MaxmindGeoipBundle/Controller/DemoController.php"
