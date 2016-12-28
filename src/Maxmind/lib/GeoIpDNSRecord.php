@@ -4,18 +4,18 @@ namespace Maxmind\lib;
 
 class GeoIpDNSRecord
 {
-    var $country_code;
-    var $country_code3;
-    var $country_name;
-    var $region;
-    var $regionname;
-    var $city;
-    var $postal_code;
-    var $latitude;
-    var $longitude;
-    var $areacode;
-    var $dmacode;
-    var $isp;
-    var $org;
-    var $metrocode;
+    public $country_code;
+    public $country_code3;
+    public $country_name;
+    public $region;
+    public $regionname;
+    public $city;
+    public $postal_code;
+    public $latitude;
+    public $longitude;
+    public $areacode;
+    public $dmacode;
+    public $isp;
+    public $org;
+    public $metrocode;
 }
