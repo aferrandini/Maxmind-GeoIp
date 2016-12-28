@@ -4,11 +4,8 @@ namespace Maxmind\Bundle\GeoipBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
-use Symfony\Component\Finder\Finder;
 
 class LoadDataCommand extends Command
 {
@@ -21,7 +18,7 @@ class LoadDataCommand extends Command
                 'source',
                 InputArgument::REQUIRED,
                 'The url source file to download and unzip')
-            ->setHelp(<<<EOT
+            ->setHelp(<<<'EOT'
 The <info>%command.name%</info> command download and install the maxmind geoip data source
 
 To install the GeoLiteCountry:

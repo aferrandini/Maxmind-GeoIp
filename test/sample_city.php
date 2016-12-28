@@ -8,17 +8,17 @@
 // Note that you must download the New Format of GeoIP City (GEO-133).
 // The old format (GEO-132) will not work.
 
-require_once "../src/GeoIp.php";
-require_once "../src/GeoIpRegionVars.php";
-require_once "../src/GeoIpRecord.php";
-require_once "../src/GeoIpDNSRecord.php";
+require_once '../src/GeoIp.php';
+require_once '../src/GeoIpRegionVars.php';
+require_once '../src/GeoIpRecord.php';
+require_once '../src/GeoIpDNSRecord.php';
 
 // uncomment for Shared Memory support
 // geoip_load_shared_mem("/usr/local/share/GeoIP/GeoIPCity.dat");
 // $gi = geoip_open("/usr/local/share/GeoIP/GeoIPCity.dat",GEOIP_SHARED_MEMORY);
 
 //$gi = geoip_open("/usr/local/share/GeoIP/GeoIPCity.dat",GEOIP_STANDARD);
-$gi = new \Maxmind\GeoIP("../data/GeoLiteCity.dat");
+$gi = new \Maxmind\GeoIP('../data/GeoLiteCity.dat');
 
 $record = $gi->geoip_record_by_addr($argv[1]);
 
@@ -26,7 +26,7 @@ $record = $gi->geoip_record_by_addr($argv[1]);
 //if(isset(\Maxmind\GeoIpRegionVars::$GEOIP_REGION_NAME[$record->country_code][$record->region])) {
 //    print utf8_encode($record->region . " " . \Maxmind\GeoIpRegionVars::$GEOIP_REGION_NAME[$record->country_code][$record->region] . "\n");
 //}
-print utf8_encode($record->city . "\n");
+echo utf8_encode($record->city."\n");
 //print utf8_encode($record->postal_code . "\n");
 //print utf8_encode($record->latitude . "\n");
 //print utf8_encode($record->longitude . "\n");

@@ -4,16 +4,16 @@ namespace Maxmind\lib;
 
 class GeoIpRecord
 {
-    var $country_code;
-    var $country_code3;
-    var $country_name;
-    var $region;
-    var $city;
-    var $postal_code;
-    var $latitude;
-    var $longitude;
-    var $area_code;
-    var $dma_code;   # metro and dma code are the same. use metro_code
-    var $metro_code;
-    var $continent_code;
+    public $country_code;
+    public $country_code3;
+    public $country_name;
+    public $region;
+    public $city;
+    public $postal_code;
+    public $latitude;
+    public $longitude;
+    public $area_code;
+    public $dma_code;   // metro and dma code are the same. use metro_code
+    public $metro_code;
+    public $continent_code;
 }
